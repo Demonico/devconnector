@@ -1,3 +1,4 @@
+const bodyparser = require('body-parser')
 const express = require('express')
 const mongoose = require('mongoose')
 
@@ -7,6 +8,9 @@ const profile = require('./routes/api/profile')
 const users = require('./routes/api/users')
 
 const app = express()
+
+// Body Parser middleware
+app.use(bodyparser.urlencoded({ extended: false }))
 
 // ================================================
 // DB Config
