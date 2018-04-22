@@ -1,10 +1,11 @@
 {
   "name": "devconnector",
   "version": "1.0.0",
-  "description": "",
+  "description": "a social network for developers",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +27,15 @@
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "validator": "^9.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.17.3"
   }
 }
