@@ -1,0 +1,3 @@
+server-tests
+--recursive
+--timeout 120000
