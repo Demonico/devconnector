@@ -58,7 +58,7 @@ describe('Validation Tests', () => {
       expect(errObj.errors.name).to.equal('Name field is required.')
       done()
     })
-    it('Should require a 30 character max', done => {
+    it('Should require a 2 character max', done => {
       let data = {
         ...baseData,
         name: 't'

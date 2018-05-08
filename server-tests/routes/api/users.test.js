@@ -7,7 +7,7 @@ const Mockgoose = require('mockgoose').Mockgoose
 const mockgoose = new Mockgoose(mongoose)
 
 // project files
-// const User = require('../../../routes/api/users')
+const User = require('../../../routes/api/users')
 const server = require('../../../server')
 
 // mockgoose config
@@ -18,12 +18,26 @@ before(done => {
     })
   })
 })
+beforeEach(done => {
+  mockgoose.helper.reset().then(() => {
+    done()
+  })
+})
 after(() => {
   mongoose.models = {}
   mongoose.modelSchemas = {}
 
   return mongoose.connection.close()
 })
+
+//  Test user Preset
+const baseData = {
+  name: 'Sam',
+  email: 'sam@emailtest.com',
+  password: 'blah123',
+  // avatar: '',
+  date: Date.now
+}
 
 // chai config
 const expect = chai.expect
@@ -45,4 +59,38 @@ describe('User Routes', () => {
         })
     })
   })
+
+  describe('/register', () => {
+    it('expect register a user', done => {
+      let data = {
+        ...baseData,
+        password2: 'blah123'
+      }
+      chai
+        .request(server)
+        .post('/api/users/register')
+        .set('content-type', 'application/x-www-form-urlencoded')
+        .send(data)
+        .end((err, res) => {
+          if (err) {
+            throw err
+          }
+          console.log('res.body', res.body)
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.a('object')
+          expect(res.body.name).to.equal('Sam')
+          expect(res.body.email).to.equal('sam@emailtest.com')
+          expect(res.body.password).to.exist
+          done()
+        })
+    })
+  })
+  // test /register
+  // test email exists response
+
+  // ------------------------------------------------
+  // test /login
+  // successful login
+  // --------------------------
+  // unsuccessful login
 })
