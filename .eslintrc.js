@@ -12,7 +12,8 @@ module.exports = {
         }
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
         "indent": [
@@ -24,6 +25,7 @@ module.exports = {
             "windows"
         ],
         'no-console': 'off',
+        "prettier/prettier": "error",
         "quotes": [
             "error",
             "single"
